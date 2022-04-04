@@ -29,10 +29,20 @@ export default {
     getTotal() {
       return this.items.reduce((total, curr) => (total = total + curr.price), 0)
     },
+    changeFullname() {
+      this.fullName = 'Clark Kent'
+    },
   },
   computed: {
-    fullName() {
-      return `${this.firstName} ${this.lastName}`
+    fullName: {
+      get() {
+        return `${this.firstName} ${this.lastName}`
+      },
+      set(value) {
+        const names = value.split(' ')
+        this.firstName = names[0]
+        this.lastName = names[1]
+      },
     },
     total() {
       return this.items.reduce((total, curr) => (total = total + curr.price), 0)
@@ -44,12 +54,16 @@ export default {
 <template>
   <h1>Fullname - {{ firstName }} {{ lastName }}</h1>
   <h1>Computed Fullname - {{ fullName }}</h1>
+  <button @click="changeFullname">Change Name</button>
   <h2>Computed total {{ total }}</h2>
   <h2>Method total {{ getTotal() }}</h2>
   <button @click="items.push({ id: 4, title: 'mouse', price: 50 })">
     Add Item
   </button>
   <input type="text" v-model="country" />
+  <template v-for="item in items" :key="item.id">
+    <h3 v-if="item.price > 100">{{ item.title }}</h3>
+  </template>
 </template>
 
 <style>
