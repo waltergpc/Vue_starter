@@ -5,11 +5,37 @@ export default {
     return {
       firstName: 'Bruce',
       lastName: 'Wayne',
+      items: [
+        {
+          id: 1,
+          title: 'TV',
+          price: 100,
+        },
+        {
+          id: 2,
+          title: 'Phone',
+          price: 350,
+        },
+        {
+          id: 3,
+          title: 'keyboard',
+          price: 150,
+        },
+      ],
+      country: '',
     }
+  },
+  methods: {
+    getTotal() {
+      return this.items.reduce((total, curr) => (total = total + curr.price), 0)
+    },
   },
   computed: {
     fullName() {
       return `${this.firstName} ${this.lastName}`
+    },
+    total() {
+      return this.items.reduce((total, curr) => (total = total + curr.price), 0)
     },
   },
 }
@@ -18,6 +44,12 @@ export default {
 <template>
   <h1>Fullname - {{ firstName }} {{ lastName }}</h1>
   <h1>Computed Fullname - {{ fullName }}</h1>
+  <h2>Computed total {{ total }}</h2>
+  <h2>Method total {{ getTotal() }}</h2>
+  <button @click="items.push({ id: 4, title: 'mouse', price: 50 })">
+    Add Item
+  </button>
+  <input type="text" v-model="country" />
 </template>
 
 <style>
