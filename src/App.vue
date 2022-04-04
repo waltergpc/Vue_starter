@@ -1,7 +1,23 @@
-<script></script>
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      firstName: 'Bruce',
+      lastName: 'Wayne',
+    }
+  },
+  computed: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`
+    },
+  },
+}
+</script>
 
 <template>
-  <h1>Hello World</h1>
+  <h1>Fullname - {{ firstName }} {{ lastName }}</h1>
+  <h1>Computed Fullname - {{ fullName }}</h1>
 </template>
 
 <style>
