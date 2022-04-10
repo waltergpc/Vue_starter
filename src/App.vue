@@ -1,69 +1,24 @@
 <script>
+import GreetComponent from './components/Greet-component.vue'
 export default {
   name: 'App',
+  components: {
+    GreetComponent,
+  },
   data() {
     return {
-      firstName: 'Bruce',
-      lastName: 'Wayne',
-      items: [
-        {
-          id: 1,
-          title: 'TV',
-          price: 100,
-        },
-        {
-          id: 2,
-          title: 'Phone',
-          price: 350,
-        },
-        {
-          id: 3,
-          title: 'keyboard',
-          price: 150,
-        },
-      ],
-      country: '',
+      firstName: 'Walter',
+      lastName: 'G-Silver',
     }
   },
-  methods: {
-    getTotal() {
-      return this.items.reduce((total, curr) => (total = total + curr.price), 0)
-    },
-    changeFullname() {
-      this.fullName = 'Clark Kent'
-    },
-  },
-  computed: {
-    fullName: {
-      get() {
-        return `${this.firstName} ${this.lastName}`
-      },
-      set(value) {
-        const names = value.split(' ')
-        this.firstName = names[0]
-        this.lastName = names[1]
-      },
-    },
-    total() {
-      return this.items.reduce((total, curr) => (total = total + curr.price), 0)
-    },
-  },
+  methods: {},
+  computed: {},
 }
 </script>
 
 <template>
-  <h1>Fullname - {{ firstName }} {{ lastName }}</h1>
-  <h1>Computed Fullname - {{ fullName }}</h1>
-  <button @click="changeFullname">Change Name</button>
-  <h2>Computed total {{ total }}</h2>
-  <h2>Method total {{ getTotal() }}</h2>
-  <button @click="items.push({ id: 4, title: 'mouse', price: 50 })">
-    Add Item
-  </button>
-  <input type="text" v-model="country" />
-  <template v-for="item in items" :key="item.id">
-    <h3 v-if="item.price > 100">{{ item.title }}</h3>
-  </template>
+  <h1>Hello World</h1>
+  <greet-component />
 </template>
 
 <style>
