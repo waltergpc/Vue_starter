@@ -1,14 +1,13 @@
 <script>
-import GreetComponent from './components/Greet-component.vue'
+import Popup from './components/Pop-Up.vue'
 export default {
   name: 'App',
   components: {
-    GreetComponent,
+    Popup,
   },
   data() {
     return {
-      firstName: 'Walter',
-      lastName: 'G-Silver',
+      showPopup: false,
     }
   },
   methods: {},
@@ -17,8 +16,8 @@ export default {
 </script>
 
 <template>
-  <h1>Hello World</h1>
-  <greet-component />
+  <button @click="showPopup = true">Show popup</button>
+  <Popup v-show="showPopup" @close="showPopup = false" />
 </template>
 
 <style>
